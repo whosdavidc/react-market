@@ -14,27 +14,32 @@ import CreateAccount from '../pages/CreateAccount';
 import MyAccount from '../pages/MyAccount';
 import NewPassword from '../pages/NewPassword';
 import Orders from '../pages/Orders';
+import AppContext from '../context/AppContext';
 import SendEmail from '../pages/SendEmail';
+import useInitialState from '../hooks/useInitialState';
 
 const App = () => {
+	const initialState = useInitialState();
 	return (
-		<BrowserRouter>
-			<Layout>
-				<Switch>
-					<Route exact path="/" component={ Home }/>
-					<Route exact path="/login" component={ Login }/>
-					<Route exact path="/recovery-password" component={ RecoveryPassword }/>
-					<Route exact path="/checkout" component={ Checkout }/>
-					<Route exact path="/create-account" component={ CreateAccount }/>
-					<Route exact path="/my-account" component={ MyAccount }/>
-					<Route exact path="/new-password" component={ NewPassword }/>
-					<Route exact path="/orders" component={ Orders }/>
-					<Route exact path="/send-mail" component={ SendEmail }/>
+		<AppContext.Provider value={initialState}>
+			<BrowserRouter>
+				<Layout>
+					<Switch>
+						<Route exact path="/" component={ Home }/>
+						<Route exact path="/login" component={ Login }/>
+						<Route exact path="/recovery-password" component={ RecoveryPassword }/>
+						<Route exact path="/checkout" component={ Checkout }/>
+						<Route exact path="/create-account" component={ CreateAccount }/>
+						<Route exact path="/my-account" component={ MyAccount }/>
+						<Route exact path="/new-password" component={ NewPassword }/>
+						<Route exact path="/orders" component={ Orders }/>
+						<Route exact path="/send-mail" component={ SendEmail }/>
 
-					<Route component={ NotFound }/>
-				</Switch>
-			</Layout>
-		</BrowserRouter>
+						<Route component={ NotFound }/>
+					</Switch>
+				</Layout>
+			</BrowserRouter>
+		</AppContext.Provider>
 	);
 }
 
